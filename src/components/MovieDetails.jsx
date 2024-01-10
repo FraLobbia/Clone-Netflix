@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { token } from "./config/token";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import ReviewList from "./ReviewsList";
+import AddReview from "./AddReview";
 
 const MovieDetails = (props) => {
 	const [data, setData] = useState([]);
@@ -72,6 +73,7 @@ const MovieDetails = (props) => {
 					</Card>
 				</Col>
 			</Row>
+			<AddReview />
 			<ReviewList />
 		</Container>
 	);

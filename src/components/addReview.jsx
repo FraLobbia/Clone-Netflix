@@ -8,43 +8,16 @@ import {
 	Row,
 	Spinner,
 } from "react-bootstrap";
-// import TestComponent from "./TestComponent";
+import { useParams } from "react-router-dom";
 
-// proprietà che il server si aspetta di ricevere da noi per ogni prenotazione inviata:
-
-// name <-- string
-// phone <-- string
-// numberOfPeople <-- string/number
-// smoking <-- boolean
-// dateTime <-- date/string
-// specialRequests <-- string
-
-const addReview = (props) => {
-	// state = {
-	//   userName: "Stefano Miceli",
-	// reservation: {
-	//   name: "",
-	//   phone: "",
-	//   numberOfPeople: "1",
-	//   smoking: false,
-	//   dateTime: "",
-	//   specialRequests: ""
-	// },
-	//   hasAlert: false,
-	// alert: {
-	//   message: "",
-	//   status: null,
-	//   variant: "primary"
-	// },
-	//   isLoading: false
-	// };
-
+const AddReview = (props) => {
+	const params = useParams();
 	const [review, setReview] = useState({
 		comment: "",
 		rate: "3",
-		elementId: "tt0076759",
+		elementId: params.movieId,
 	});
-
+	console.log(review);
 	const [hasAlert, setHasAlert] = useState(false);
 	const [alert, setAlert] = useState({
 		message: "",
@@ -74,6 +47,8 @@ const addReview = (props) => {
 					body: JSON.stringify(review),
 					headers: {
 						"Content-Type": "application/json",
+						Authorization:
+							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcyMGYxYzBkOGEyMDAwMThhNDhiNTIiLCJpYXQiOjE3MDQ4OTg3NjYsImV4cCI6MTcwNjEwODM2Nn0.Dfh6SWG4vG7N5voO4TGXfqb4L_CIQrNADLj9b5sG4U4",
 					},
 				}
 			);
@@ -82,7 +57,7 @@ const addReview = (props) => {
 				setReview({
 					comment: "",
 					rate: "3",
-					elementId: "tt0076759",
+					elementId: params.movieId,
 				});
 
 				const newReview = await response.json();
@@ -129,7 +104,7 @@ const addReview = (props) => {
 
 	return (
 		<Container className={props.className}>
-			<h2 className="text-center mt-5">Prenota il tuo tavolo</h2>
+			<h2 className="text-center mt-5">Scrivi la tua recensione</h2>
 
 			{/* <TestComponent reservation={reservation} /> */}
 
@@ -141,7 +116,7 @@ const addReview = (props) => {
 
 					<Form onSubmit={handleSubmit}>
 						<Form.Group className="mb-3" controlId="formBasicEmail">
-							<Form.Label>Rate</Form.Label>
+							<Form.Label>Commento</Form.Label>
 							<Form.Control
 								type="text"
 								placeholder="Inserisci il tuo commento"
@@ -170,7 +145,7 @@ const addReview = (props) => {
 							</Form.Select>
 						</Form.Group>
 
-						<Button variant="primary" type="submit">
+						<Button variant="outline-light" type="submit">
 							Submit
 							{isLoading && (
 								<Spinner
@@ -188,4 +163,4 @@ const addReview = (props) => {
 	);
 };
 
-export default addReview;
+export default AddReview;
