@@ -8,8 +8,8 @@
 
 $body-bg: black;
 $body-color: white;
-$navbar-light-color: white;
-$navbar-light-hover-color: gray;
+$navbar-light-color: gray;
+$navbar-light-hover-color: white;
 $border-color: white;
 $border-radius: 0;
 $focus-ring-width: 0;
@@ -18,7 +18,7 @@ $dropdown-link-hover-color: black;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/variables-dark"; // senza questa da errore
+//@import "../node_modules/bootstrap/scss/variables-dark"; // senza questa da errore
 
 // 4. Include any default map overrides here
 

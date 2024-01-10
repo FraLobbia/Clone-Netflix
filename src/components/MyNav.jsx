@@ -2,13 +2,11 @@ import { Nav, Container, Navbar } from "react-bootstrap";
 
 import navBarConfig from "./config/navBarConfig.json";
 import DropdownUser from "./DropdownUser";
+import { NavLink } from "react-router-dom";
 function MyNav(props) {
 	return (
 		<Navbar expand="md">
-			<Container
-				fluid
-				className="p-0"
-			>
+			<Container fluid className="p-0">
 				<Navbar.Brand href="#">
 					<img
 						src={props.logo}
@@ -24,8 +22,7 @@ function MyNav(props) {
 
 				<Navbar.Collapse
 					id="myNavbar"
-					className="text-center justify-content-between flex-row-reverse"
-				>
+					className="text-center justify-content-between flex-row-reverse">
 					<hr className="d-md-none" />
 
 					<Nav className="flex-row justify-content-center">
@@ -44,12 +41,12 @@ function MyNav(props) {
 					<Nav>
 						{navBarConfig.map((navItem, index) => {
 							return (
-								<Nav.Link
-									href={navItem.link}
+								<NavLink
+									to={navItem.link}
 									key={`navItem-${index}`}
-								>
+									className="nav-link">
 									{navItem.name}
-								</Nav.Link>
+								</NavLink>
 							);
 						})}
 					</Nav>

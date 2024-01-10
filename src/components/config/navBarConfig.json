@@ -1,18 +1,18 @@
 [
 	{
 		"name": "Home",
-		"link": "#"
+		"link": "/home"
 	},
 	{
 		"name": "TV Shows",
-		"link": "#"
+		"link": "/tvshows"
 	},
 	{
 		"name": "Movies",
-		"link": "#"
+		"link": "/movies"
 	},
 	{
 		"name": "Recently Added",
-		"link": "#"
+		"link": "/recently-added"
 	}
 ]

@@ -1,29 +1,48 @@
 import logo from "./netflix_logo.png";
 import "./assets/dist/css/style.min.css";
 import MyNav from "./components/MyNav";
-import ActionBar from "./components/ActionsBar";
-import Gallery from "./components/Gallery";
 import MyFooter from "./components/MyFooter";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import TVShows from "./components/TVShows";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
 	return (
-		<>
+		<BrowserRouter>
 			<MyNav logo={logo} />
-			<ActionBar />
-			<h2 className="ms-3">Trending Now</h2>
-			<Gallery
-				searchQuery="batman"
-				stile="mb-3"
-			/>
-			<h2 className="ms-3">Watch It Again</h2>
-			<Gallery
-				searchQuery="spider-man"
-				stile="mb-3"
-			/>
-			<h2 className="ms-3">Popular on Netflix</h2>
-			<Gallery searchQuery="superman" />
+			<Routes>
+				<Route
+					path="/home"
+					element={
+						<TVShows
+							title="Home"
+							secondaryTitles={[
+								"Trending Now",
+								"Watch It Again",
+								"Popular on Netflix",
+							]}
+							searchQuery={["batman", "spider-man", "superman"]}
+						/>
+					}
+				/>
+				<Route
+					path="/tvshows"
+					element={
+						<TVShows
+							title="TV Shows"
+							secondaryTitles={[
+								"Your favorite series",
+								"New TV Shows",
+								"Old but gold",
+							]}
+							searchQuery={["one-piece", "crime", "star-wars"]}
+						/>
+					}
+				/>
+				<Route path="/:movieId" element={<MovieDetails />} />
+			</Routes>
 			<MyFooter />
-		</>
+		</BrowserRouter>
 	);
 }
 
