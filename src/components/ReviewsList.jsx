@@ -36,7 +36,7 @@ import { useEffect } from "react";
 // della lista questa volta è diverso e questa seconda invocazione si
 // occuperà di popolarla con i nuovi list items
 
-const ReviewList = () => {
+const ReviewList = ({ comments }) => {
 	// state = {
 	//   reviews: [],
 	//   // inizializzare reviews come array vuoto è un'ottima scelta
@@ -46,7 +46,7 @@ const ReviewList = () => {
 	//   hasError: false,
 	//   isLoading: true
 	// };
-
+	console.log(comments);
 	const [reviews, setReviews] = useState([]);
 	const [hasError, setHasError] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
@@ -64,7 +64,13 @@ const ReviewList = () => {
 	const fetchreviews = async () => {
 		try {
 			let response = await fetch(
-				"https://striveschool-api.herokuapp.com/api/comments"
+				"https://striveschool-api.herokuapp.com/api/comments",
+				{
+					headers: {
+						Authorization:
+							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcyMGYxYzBkOGEyMDAwMThhNDhiNTIiLCJpYXQiOjE3MDQ4OTg3NjYsImV4cCI6MTcwNjEwODM2Nn0.Dfh6SWG4vG7N5voO4TGXfqb4L_CIQrNADLj9b5sG4U4",
+					},
+				}
 			);
 			if (response.ok) {
 				let reviews = await response.json();
@@ -110,22 +116,18 @@ const ReviewList = () => {
 					)}
 					{/* qua inseriamo la lista dinamica */}
 					<ListGroup>
-						{reviews.length > 0 && !isLoading && !hasError && (
+						{comments.length > 0 && !isLoading && !hasError && (
 							<>
-								{reviews.map((reservation) => (
+								{comments.map((comment) => (
 									<ListGroup.Item
-										key={reviews.elementId}
-										className="d-flex justify-content-between">
+										key={comment.elementId}
+										className="d-flex justify-content-between bg-black text-white">
 										<span>
 											Voto dato:{" "}
-											<strong>{reviews.rate}</strong>
+											<strong>{comment.rate}</strong>
 										</span>
 										{/* voglio trasformare la proprietà dateTime della prenotazione in qualcosa di più leggibile*/}
-										<span>
-											{/* {new Date(
-												reservation.dateTime
-											).toLocaleTimeString()} */}
-										</span>
+										<span>{comment.comment}</span>
 									</ListGroup.Item>
 								))}
 							</>

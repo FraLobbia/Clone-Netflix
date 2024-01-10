@@ -36,7 +36,7 @@ const MovieDetails = (props) => {
 			});
 			if (resp.ok) {
 				const commentData = await resp.json();
-				console.log(commentData);
+
 				setComments(commentData);
 				// this.setState({ isLoaded: true });
 			}
@@ -74,7 +74,7 @@ const MovieDetails = (props) => {
 				</Col>
 			</Row>
 			<AddReview />
-			<ReviewList />
+			<ReviewList comments={comments} />
 		</Container>
 	);
 };
